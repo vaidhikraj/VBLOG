@@ -10,10 +10,9 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     a=BlogTable.objects.filter(public=True).order_by('-today')
-    global post
-    post=len(a)
+    
 
-    return render(request,'tempfirst/index.html',{'data':a,'post':post})
+    return render(request,'tempfirst/index.html',{'data':a})
 
 def signup(request):
     if request.method=='POST':
@@ -25,7 +24,7 @@ def signup(request):
             except IntegrityError:
                 return render(request,'tempfirst/signup.html')
             
-    return render(request,'tempfirst/signup.html',{'post':post})
+    return render(request,'tempfirst/signup.html')
 
 def botist(request):
     return render(request,'tempfirst/botist.html')
@@ -39,13 +38,13 @@ def ulogin(request):
         else:
             return render(request,'tempfirst/ulogin.html')
 
-    return render(request,'tempfirst/ulogin.html',{'post':post})
+    return render(request,'tempfirst/ulogin.html')
 
 
 @login_required(login_url="ulogin")
 def home(request):
     a=BlogTable.objects.filter(public=True).order_by('-today')
-    return render(request,'tempfirst/home.html',{'data':a,'post':post})
+    return render(request,'tempfirst/home.html',{'data':a})
 
 @login_required(login_url="ulogin")
 def blog(request):
@@ -58,17 +57,17 @@ def blog(request):
         print(b.foto.url)
         return redirect('home')
         
-    return render(request,'tempfirst/blog.html',{'form':BlogForm(),'post':post})
+    return render(request,'tempfirst/blog.html',{'form':BlogForm()})
 
 @login_required(login_url="ulogin")
 def myblog(request):
     b=BlogTable.objects.filter(user=request.user).order_by('-today')
-    return render(request,'tempfirst/myblog.html',{'data':b,'post':post})
+    return render(request,'tempfirst/myblog.html',{'data':b})
     
 @login_required(login_url="ulogin")
 def status(request):
     b=BlogTable.objects.filter(user=request.user)
-    return render(request,'tempfirst/status.html',{'data':b,'post':post})
+    return render(request,'tempfirst/status.html',{'data':b})
 
 
 @login_required(login_url="ulogin")
@@ -82,7 +81,7 @@ def viewblog(request,id):
         return redirect('home')
 
 
-    return render(request,'tempfirst/viewblog.html',{'form':f,'post':post})
+    return render(request,'tempfirst/viewblog.html',{'form':f})
 
 
 
