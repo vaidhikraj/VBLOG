@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^qoj4&7mkv=4s4ynye)l%_ncqm%w6j6925$=(=b#al&7!x+@+#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://docccitablog.herokuapp.com/']
 
@@ -58,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:8000",
+    "https://docccitablog.herokuapp.com/",
 ]
 
 ROOT_URLCONF = 'finalblog.urls'
