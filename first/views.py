@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     a=BlogTable.objects.filter(public=True).order_by('-today')
     global post
-    post=str(len(a))+" blogs"
+    post=len(a)
 
     return render(request,'tempfirst/index.html',{'data':a,'post':post})
 
