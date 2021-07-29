@@ -25,7 +25,7 @@ SECRET_KEY = '^qoj4&7mkv=4s4ynye)l%_ncqm%w6j6925$=(=b#al&7!x+@+#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://docccitablog.herokuapp.com']
+ALLOWED_HOSTS = ['docccitablog.herokuapp.com']
 
 
 # Application definition
@@ -58,7 +58,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://docccitablog.herokuapp.com",
+    "*",
 ]
 
 ROOT_URLCONF = 'finalblog.urls'
