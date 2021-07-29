@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from . import views
-# Create your views here.
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -12,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     a=BlogTable.objects.filter(public=True).order_by('-today')
     global post
-    post=len(a)
+    post=str(len(a))+" blogs"
 
     return render(request,'tempfirst/index.html',{'data':a,'post':post})
 
@@ -27,6 +26,9 @@ def signup(request):
                 return render(request,'tempfirst/signup.html')
             
     return render(request,'tempfirst/signup.html',{'post':post})
+
+def botist(request):
+    return render(request,'tempfirst/botist.html')
 
 def ulogin(request):
     if request.method=='POST':
@@ -49,9 +51,11 @@ def home(request):
 def blog(request):
     if request.method=='POST':
         a=BlogForm(request.POST,request.FILES)
+        
         b=a.save(commit=False)
         b.user=request.user
         b.save()
+        print(b.foto.url)
         return redirect('home')
         
     return render(request,'tempfirst/blog.html',{'form':BlogForm(),'post':post})
